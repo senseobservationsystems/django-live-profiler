@@ -1,9 +1,10 @@
-import threading
+current_view = None
 
-_local = threading.local()
-
-def _set_current_view(view):
-    _local.current_view = view
+def _set_current_view(view_name):
+    global current_view
+    assert view_name is not None
+    current_view = view_name
 
 def _get_current_view():
-    return getattr(_local, 'current_view', None)
+    global current_view
+    return current_view

@@ -1,10 +1,16 @@
-from django.conf.urls.defaults import *
+from django.urls import path
 
-urlpatterns = patterns(
-    'profiler.views',
-    url(r'^$', 'global_stats', name='profiler_global_stats'),
-    url(r'^by_view/$', 'stats_by_view', name='profiler_stats_by_view'),
-    url(r'^code/$', 'python_stats', name='profiler_python_stats'),
-    url(r'^reset/$', 'reset', name='profiler_reset'),
-    )
+from .views import (
+    global_stats,
+    stats_by_view,
+    python_stats,
+    reset,
+)
+
+urlpatterns = [
+    path('', global_stats, name='profiler_global_stats'),
+    path('by_view/', stats_by_view, name='profiler_stats_by_view'),
+    path('code/', python_stats, name='profiler_python_stats'),
+    path('reset/', reset, name='profiler_reset'),
+]
 
