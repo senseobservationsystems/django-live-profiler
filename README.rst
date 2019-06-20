@@ -32,3 +32,9 @@ You may experience issues with staticfiles loading in chrome when `--nothreading
 This is because chrome opens two initial connections, which blocks when Django is only able to respond to one of them.  To fix this, you must serve staticfiles via separate staticfile server, such as nginx with a reverse_proxy to your Django runserver.
 
 Visit http://yoursite.com/profiler/ for results.
+
+
+Note: you must be logged in as a superuser to view the profiler page.
+You can create a superuser account with:
+
+  $ ./manage.py createsuperuser
