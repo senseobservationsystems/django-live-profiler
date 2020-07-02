@@ -70,7 +70,7 @@ def main():
     context = zmq.Context.instance()
     socket = context.socket(zmq.SUB)
     socket.bind("tcp://%s:%d"%(args.host, args.port))
-    socket.setsockopt(zmq.SUBSCRIBE,'')
+    socket.setsockopt(zmq.SUBSCRIBE, b'')
     a = Aggregator()
     statthread = Thread(target=ctl, args=(a,))
     statthread.daemon = True
