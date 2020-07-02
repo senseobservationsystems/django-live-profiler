@@ -11,7 +11,7 @@ class _RemoteMethod:
         self.socket.send_pyobj((self.name, args, kwargs))
         return self.socket.recv_pyobj()
 
-class Aggregator(object):
+class Aggregator:
     def __init__(self):
         self.context = zmq.Context()
         self.data_socket = self.context.socket(zmq.PUB)

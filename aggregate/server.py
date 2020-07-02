@@ -5,7 +5,7 @@ from threading import Thread
 import zmq
 from zmq.eventloop import ioloop
 
-class Aggregator(object):
+class Aggregator:
     def __init__(self):
         self.data = {}
 
@@ -17,16 +17,16 @@ class Aggregator(object):
         except KeyError:
             rec = self.data[key] = values.copy()
         else:
-            for i, v in values.iteritems():
+            for i, v in values.items():
                 rec[i] += v
 
         
 
     def select(self, group_by=[], where={}):
         if not group_by and not where:
-            return [dict(list(k)+v.items()) for k,v in self.data.iteritems()]
+            return [dict(list(k)+v.items()) for k,v in self.data.items()]
         a = Aggregator()
-        for k, v in self.data.iteritems():
+        for k, v in self.data.items():
             matched = 0
             for key_k, key_v in k:
                 try:
