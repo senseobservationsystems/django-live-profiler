@@ -3,7 +3,6 @@ from datetime import datetime
 from django.db.models.sql.compiler import SQLCompiler
 from django.db.models.sql.datastructures import EmptyResultSet
 from django.db.models.sql.constants import MULTI
-from django.db.models.query import QuerySet
 from django.db import connection
 
 from aggregate.client import get_client
@@ -21,7 +20,7 @@ def execute_sql(self, *args, **kwargs):
             raise EmptyResultSet
     except EmptyResultSet:
         if kwargs.get('result_type', MULTI) == MULTI:
-            return QuerySet.none()
+            return iter([])
         else:
             return
     start = datetime.now()
